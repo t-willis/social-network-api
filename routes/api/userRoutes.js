@@ -19,9 +19,9 @@ router
 // get - get single user by userId
 // put - update user by userId
 // delete - delete user by userId
-// router
-//     .route('/:userId')
-//     .get(getSingleUser)
+router
+    .route('/:userId')
+    .get(getSingleUser)
 //     .put(updateUser)
 //     .delete(deleteUser);
 
