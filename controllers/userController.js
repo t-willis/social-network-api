@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const { User, Thought } = require('../models');
 
 module.exports = {
     // Get All Users
@@ -7,6 +7,7 @@ module.exports = {
             const users = await User.find();
             res.json(users);
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
@@ -32,4 +33,41 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // Update User by _id
+    async updateUser(req, res) {
+        try {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $set: req.body },
+                { runValidators: true, new: true }
+            );
+            if (!user) {
+                return res.status(404).json({ message: 'No user with this ID!' });
+            }
+            res.json(user);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    // Delete User by _id
+    async deleteUser(req, res) {
+        try {
+            const user = await User.findOneAndRemove({ _id: req.params.userId });
+
+            if (!user) {
+                return res.status(404).json({ message: 'No user with this ID!' });
+            }
+            
+            const thoughts = await Thought.deleteMany({ username: user.username });
+
+            if (!thoughts) {
+                return res.status(404).json({ message: 'User deleted, there were no associated thoughts'});
+            }
+
+            res.json({ message: 'User and associated thoughts deleted.'});
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
 };
