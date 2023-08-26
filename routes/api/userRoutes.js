@@ -19,10 +19,10 @@ router
 // get - get single user by userId
 // put - update user by userId
 // delete - delete user by userId
-router
-    .route('/:userId')
-    .get(getSingleUser)
-    .put(updateUser)
-    .delete(deleteUser);
+// router
+//     .route('/:userId')
+//     .get(getSingleUser)
+//     .put(updateUser)
+//     .delete(deleteUser);
 
 module.exports = router;

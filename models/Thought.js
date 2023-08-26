@@ -14,6 +14,8 @@ const thoughtSchema = new Schema(
             default: Date.now,
         },
     }
-)
+);
+
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
