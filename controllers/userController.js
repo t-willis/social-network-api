@@ -50,7 +50,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
-    // Delete User by _id
+    // Delete User by _id, delete associated thoughts
     async deleteUser(req, res) {
         try {
             const user = await User.findOneAndRemove({ _id: req.params.userId });
@@ -68,6 +68,39 @@ module.exports = {
             res.json({ message: 'User and associated thoughts deleted.'});
         } catch (err) {
             console.log(err);
+            res.status(500).json(err);
+        }
+    },
+
+    // Add friend by friendId
+    async addFriend(req, res) {
+        try {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId},
+                { $addToSet: { friends: req.params.friendId } },
+                { new: true }
+            );
+            if (!user) {
+                return res.status(404).json({ message: "No user found with this userId!"});
+            }
+            res.json(user);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    // Remove friend by friendId
+    async deleteFriend(req, res) {
+        try {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $pull: { friends: req.params.friendId } },
+                { new: true}
+            );
+            if (!user) {
+                return res.status(404).json({ message: "No user found with this userId!"});
+            }
+            res.json(user);
+        } catch (err) {
             res.status(500).json(err);
         }
     }
