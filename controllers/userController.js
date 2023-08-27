@@ -31,7 +31,7 @@ module.exports = {
             const dbUserData = await User.create(req.body);
             res.json(dbUserData);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).json({ message: 'A user with that username or email already exists!'});
         }
     },
     // Update User by _id

@@ -78,17 +78,17 @@ module.exports = {
     // Add reaction to thought
     async createReaction(req, res) {
         try {
-            const thought = await Thought.create(req.body);
-            const user = await User.findOneAndUpdate(
-                { _id: req.body.userId },
-                { $push: { thoughts: thought.id } },
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $push: { reactions: req.body } },
                 { new: true }
             );
-            if (!user) {
+            if (!thought) {
                 return res.status(404).json({ message: "No thought found with that thoughtId!" });
             }
             res.json(thought);
         } catch (err) {
+            console.log(err);
             return res.status(500).json(err);
         }
     },
