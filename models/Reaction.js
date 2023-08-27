@@ -17,14 +17,20 @@ const reactionSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: Date.now
+            default: Date.now,
+            get: formatDate,
         },
     },
     {
         toJSON: {
             virtuals: true,
+            getters: true,
         },
     }
 );
+
+function formatDate(createdAt) {
+    return (createdAt.toLocaleString());
+}
 
 module.exports = reactionSchema;
