@@ -2,8 +2,11 @@
 
 ## Description
 
-A MongoDB based social network API using Mongoose and Express.js.
+A MongoDB/Mongoose based social network API using Mongoose and Express.js. API can be utilized to create Users, Thoughts, and Reactions to those Thoughts, as well as add other users to their friends list.
 
+This is my first time using MongoDB and Mongoose to create a robust API. I found the systems relatively easy to work with and quite forgiving, thought documentation can be lacking of examples at times.
+
+Creating a mock social network api was a great way to dip my toes into the world of MongoDB and Mongoose. Learning to utilize subdocuments, virtuals, getters, models/schemas, and various new-to-me methods to create, update, and delete documents or documents within documents was very well worth the effort.
 
 ## Installation
 
