@@ -12,7 +12,12 @@ Creating a mock social network api was a great way to dip my toes into the world
 
 There are several things you must install before you'll be able to run this app.
 
-If you want to run this API locally you'll need to do the following:
+First and foremost you must install MongoDB Community Edition and configure it appropriately. Below are links to the MongoDB documentation tutorials to install on your preferred operating system.
+
+- [MacOS](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)
+- [Windows](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/)
+
+Once MongoDB CE is installed and configured, you can run this API locally by doing the following:
 
 - Clone the repository to your local machine
 - Navigate to the project repository
